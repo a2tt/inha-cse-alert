@@ -1,0 +1,31 @@
+service: inha-univ
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  role: arn:aws:iam::664652812385:role/InhaUnivRole
+  region: ap-northeast-2
+  stage: p
+  memorySize: 128
+  timeout: 900
+  profile: usera2tt
+
+package:
+  exclude:
+    - .idea/**
+    - __pycache__/**
+    - dumps/**
+    - node_modules/**
+
+functions:
+  boardCrawler:
+    handler: handler.board_crawler
+    layers:
+      - arn:aws:lambda:ap-northeast-2:664652812385:layer:CrawlerLayer:5
+    events:
+      - schedule:
+          rate: cron(0 * * * ? *)
+          enabled: true
+          description: 'inha-univ-board-crawler'
