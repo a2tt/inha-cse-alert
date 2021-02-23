@@ -47,7 +47,7 @@ def crawl(board_name, url):
     for tr in trs[::-1]:  # 예전 것부터 -> ASC order 알림
         num = tr.find(attrs={'class': '_artclTdNum'}).text.strip()
         date = tr.find(attrs={'class': '_artclTdRdate'}).text.strip()
-        title = tr.find(attrs={'class': '_artclTdTitle'}).text.strip()
+        title = tr.find(attrs={'class': '_artclTdTitle'}).find('a').text.strip()
         _link_path = tr.find('a', attrs={'class': 'artclLinkView'}).attrs.get('href').strip()
         link = urljoin(url, _link_path)
 
