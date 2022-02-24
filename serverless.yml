@@ -2,15 +2,19 @@ service: inha-univ
 
 frameworkVersion: '2'
 
+custom:
+  stage: p
+  config: ${file(./configs.yml)}
+
 provider:
   name: aws
-  runtime: python3.8
-  role: arn:aws:iam::664652812385:role/InhaUnivRole
-  region: ap-northeast-2
-  stage: p
+  runtime: ${self:custom.config.provider.runtime}
+  role: ${self:custom.config.provider.role}
+  region: ${self:custom.config.provider.region}
+  stage: ${self:custom.config.provider.stage}
+  profile: ${self:custom.config.provider.profile}
   memorySize: 128
   timeout: 900
-  profile: usera2tt
 
 package:
   exclude:
@@ -22,8 +26,7 @@ package:
 functions:
   boardCrawler:
     handler: handler.board_crawler
-    layers:
-      - arn:aws:lambda:ap-northeast-2:664652812385:layer:CrawlerLayer:5
+    layers: ${self:custom.config.provider.layer}
     events:
       - schedule:
           rate: cron(0 * * * ? *)
