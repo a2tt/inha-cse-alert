@@ -11,8 +11,9 @@ from model.parser import ParseRule
 class BaseParser:
     """
     Note that, because there is no exception handlers, parsing errors will
-    occur when the HTML structure is changed or in other cases. But it is
-    an intended behavior
+    happen when the HTML structure is changed or in other cases. But it is
+    an intended behavior in order to be notified by sentry and to fix it
+    right away.
     """
 
     def __init__(self, url, list_rule: List[ParseRule]):
