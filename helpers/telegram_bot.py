@@ -2,16 +2,16 @@ import time
 import telegram
 from telegram.error import RetryAfter, TimedOut, NetworkError
 
-import settings
+import configs
 
-bot = telegram.Bot(token=settings.TELEGRAM_TOKEN)
+bot = telegram.Bot(token=configs.TELEGRAM_TOKEN)
 RETRY = 5
 
 
-def send_message(message, chat_id=settings.TELEGRAM_TARGET_ID, parse_mode=None):
+def send_message(message, chat_id=configs.TELEGRAM_TARGET_ID, parse_mode=None):
     """ parse_mode : None | 'HTML' """
     if not message:
-        return None
+        return
 
     for idx in range(0, RETRY):
         try:

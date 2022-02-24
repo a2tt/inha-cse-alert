@@ -1,0 +1,19 @@
+provider:
+  stage: ""
+  runtime: ""
+  region: ""
+  role: ""
+  profile: ""
+  layer:
+    - ""
+
+application:
+  SENTRY_DSN: ""
+  
+  TELEGRAM_TOKEN: ""
+  TELEGRAM_TARGET_ID: 0
+
+  S3_BUCKET_NAME: ""
+  S3_BOARD_FOLDER: ""
+
+  USER_AGENT: ""

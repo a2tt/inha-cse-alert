@@ -1,19 +1,13 @@
-import traceback
+from helpers.sentry import init_sentry
 
-from helpers import telegram_bot
-
-import settings
+init_sentry()
 
 
 def board_crawler(event=None, context=None):
     from tasks.board_crawler import main
-    try:
-        return main()
-    except:
-        e_str = traceback.format_exc()
-        telegram_bot.send_message(e_str, settings.TELEGRAM_ALERT_CHANNEL_ID)
-        return
+
+    return main()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     board_crawler()
