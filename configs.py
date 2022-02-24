@@ -16,11 +16,26 @@ def get_value(key: str, type_: type = str) -> Any:
 
 
 class CrawlUrl(Enum):
-    학생회소식 = "https://cse.inha.ac.kr/cse/884/subview.do"
-    공지사항 = "https://cse.inha.ac.kr/cse/888/subview.do"
-    졸업예정자공지 = "https://cse.inha.ac.kr/cse/889/subview.do"
-    인하대공지 = "https://www.inha.ac.kr/kr/950/subview.do"
+    # Normal list view (deprecated)
+    # 학생회소식 = "https://cse.inha.ac.kr/cse/884/subview.do"
+    # 공지사항 = "https://cse.inha.ac.kr/cse/888/subview.do"
+    # 졸업예정자공지 = "https://cse.inha.ac.kr/cse/889/subview.do"
+    # 인하대공지 = "https://www.inha.ac.kr/kr/950/subview.do"
 
+    # BBS list view
+    학생회소식 = "https://cse.inha.ac.kr/bbs/cse/241/artclList.do"
+    공지사항 = "https://cse.inha.ac.kr/bbs/cse/242/artclList.do"
+    졸업예정자공지 = "https://cse.inha.ac.kr/bbs/cse/243/artclList.do"
+    인하대공지 = "https://www.inha.ac.kr/bbs/kr/8/artclList.do"
+
+
+# For backward compatibility
+KEY_MAP = {
+    "https://cse.inha.ac.kr/bbs/cse/241/artclList.do": "https://cse.inha.ac.kr/cse/884/subview.do",
+    "https://cse.inha.ac.kr/bbs/cse/242/artclList.do": "https://cse.inha.ac.kr/cse/888/subview.do",
+    "https://cse.inha.ac.kr/bbs/cse/243/artclList.do": "https://cse.inha.ac.kr/cse/889/subview.do",
+    "https://www.inha.ac.kr/bbs/kr/8/artclList.do": "https://www.inha.ac.kr/kr/950/subview.do",
+}
 
 # Load configs
 app_configs: dict = load_configs()
