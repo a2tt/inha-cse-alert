@@ -1,0 +1,5 @@
+aws_region           = "ap-northeast-2"
+dynamodb_name_suffix = "dynamodb"
+dynamodb_lock_name   = "LockID"
+project              = "inhaCSENotice"
+application          = "terraform"
