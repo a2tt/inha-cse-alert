@@ -6,6 +6,5 @@ import configs
 
 def init_sentry():
     sentry_sdk.init(
-        dsn=configs.SENTRY_DSN,
-        integrations=[AwsLambdaIntegration()]
+        dsn=configs.SENTRY_DSN, integrations=[AwsLambdaIntegration()]
     )

@@ -5,18 +5,15 @@ import boto3
 
 import configs
 
-s3_client = boto3.client('s3')
+s3_client = boto3.client("s3")
 
 
 def get_object(key: str):
     try:
-        obj = s3_client.get_object(
-            Bucket=configs.S3_BUCKET_NAME,
-            Key=key
-        )
-        return obj['Body'].read().decode()  # StreamingBody -> bytes -> str
+        obj = s3_client.get_object(Bucket=configs.S3_BUCKET_NAME, Key=key)
+        return obj["Body"].read().decode()  # StreamingBody -> bytes -> str
     except Exception as e:
-        return ''
+        return ""
 
 
 def put_object(key, body):
@@ -25,7 +22,7 @@ def put_object(key, body):
 
     try:
         return s3_client.put_object(
-            ACL='private',
+            ACL="private",
             Body=body,
             Bucket=configs.S3_BUCKET_NAME,
             Key=key,
@@ -45,4 +42,6 @@ def s3_key_gen(url):
 
     _url = configs.KEY_MAP.get(url, url)
     path = urlparse(_url).path
-    return os.path.join(configs.S3_BOARD_FOLDER, path.strip("/").replace("/", "_") + ".json")
+    return os.path.join(
+        configs.S3_BOARD_FOLDER, path.strip("/").replace("/", "_") + ".json"
+    )
