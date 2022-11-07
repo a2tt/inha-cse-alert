@@ -21,7 +21,7 @@ class Crawler:
     def get_articles(self) -> List[Article]:
         resp = self._send_request()
 
-        el = BeautifulSoup(resp.text, "lxml")
+        el = BeautifulSoup(resp.text, "html.parser")
         return self.parser.parse_list(el)
 
 

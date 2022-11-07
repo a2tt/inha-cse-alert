@@ -1,11 +1,5 @@
 terraform {
-  backend "s3" {
-    # FIXME: configure dynamically
-    bucket         = "inhacsenotice-dev-terraform-bucket"
-    key            = "inhaCSENotice-dev-task.tfstate"
-    region         = "ap-northeast-2"
-    dynamodb_table = "inhaCSENotice-dev-terraform-dynamodb"
-  }
+  backend "s3" {}
 
   required_providers {
     aws = {
