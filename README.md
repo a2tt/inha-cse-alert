@@ -41,7 +41,10 @@ export ENVIRONMENT=dev
     : 위에서 언급한 `package`, `apply` 명령을 통하여 프로젝트를 배포합니다. 주로 코드가 변경 되었을 경우에 사용합니다.
     > Run `package` and `apply` command above to deploy project, especially when it is changed.
 - `$ make destroy`
-    : 이 프로젝트에서 생성한 AWS 리소스들을 삭제합니다.
+    : 이 프로젝트에서 생성한 AWS Lambda 관련 리소스들을 삭제합니다.
+    > Terminate and delete all resources created by this project. 
+- `$ make destroy_all`
+    : 이 프로젝트에서 생성한 AWS 리소스들을 모두 삭제합니다.
     > Terminate and delete all resources created by this project. 
 - `$ make cleanup`  
     : AWS Lambda 와 관련된 Zip 파일들을 삭제합니다.
