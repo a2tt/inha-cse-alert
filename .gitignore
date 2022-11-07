@@ -5,3 +5,6 @@ __pycache__
 .vscode
 .idea
 configs.yml
+
+application.zip
+lambda_layer.zip

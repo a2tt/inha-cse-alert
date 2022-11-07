@@ -4,7 +4,7 @@ variable "aws_region" {
 }
 
 variable "bucket_suffix" {
-  description = "AWS S3 bucket name where tfstate files are stored. It should be globally unique."
+  description = "AWS S3 bucket suffix where tfstate files are stored. It should be globally unique."
 }
 
 variable "dynamodb_name_suffix" {
