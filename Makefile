@@ -5,7 +5,7 @@ export TF_VAR_lambda_layer_name=${PROJECT_ROOT}/lambda_layer.zip
 
 init:
 	@echo "-- Initialize Terraform workspace and backend"
-	${SHELL} script/initialize_infra.sh
+	${SHELL} script/initialize.sh
 	@echo ""
 
 package:
@@ -15,18 +15,18 @@ package:
 
 apply:
 	@echo "-- Executing Terraform apply"
-	${SHELL} script/apply_infra.sh
+	${SHELL} script/apply.sh
 	@echo ""
 
 deploy: package apply
 	@echo ""
 
-destroy_infra:
+destroy:
 	@echo "-- Destroy infrastructure of Terraform"
-	${SHELL} script/destroy_infra.sh
+	${SHELL} script/destroy.sh
 	@echo ""
 
-destroy: destroy_infra
+destroy_all: destroy
 	@echo "-- Destroy Terraform backend"
 	${SHELL} script/destroy_backend.sh
 	@echo ""
