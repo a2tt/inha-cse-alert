@@ -1,4 +1,4 @@
-# IAM
+# IAM assume role for Lambda
 resource "aws_iam_role" "lambda" {
   name = "${local.name_prefix}-role"
 
@@ -19,34 +19,6 @@ resource "aws_iam_role" "lambda" {
 EOF
 }
 
-resource "aws_iam_policy" "cloudwatch_logging" {
-  name        = "${local.name_prefix}-policy-cloudwatchLogging"
-  path        = "/"
-  description = "IAM policy for logging from a lambda"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Resource": "arn:aws:logs:*:*:*",
-      "Effect": "Allow"
-    }
-  ]
-}
-  EOF
-}
-
-resource "aws_iam_role_policy_attachment" "cloudwatch_logging" {
-  role       = aws_iam_role.lambda.name
-  policy_arn = aws_iam_policy.cloudwatch_logging.arn
-}
-
 # Lambda function
 resource "aws_lambda_function" "this" {
   filename         = var.lambda_package_name
@@ -62,6 +34,7 @@ resource "aws_lambda_function" "this" {
 
   depends_on = [
     aws_iam_role_policy_attachment.cloudwatch_logging,
+    aws_cloudwatch_log_group.this,
   ]
 }
 
